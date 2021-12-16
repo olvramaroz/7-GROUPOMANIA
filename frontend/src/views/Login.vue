@@ -51,6 +51,7 @@ export default {
 <style>
     .form-row {
     display: flex;
+    justify-content: center;
     margin: 16px 0px;
     gap:16px;
     flex-wrap: wrap;

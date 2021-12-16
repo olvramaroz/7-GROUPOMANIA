@@ -61,17 +61,18 @@ body {
 }
   .button {
     background: #FD2D01;
-    color: #fff;
+    color: #000;
+    /* border: solid 5px #FD2D01; */
     border-radius: 8px;
     font-weight: 500;
-    font-size: 1rem;
-    border: none;
-    width: 100%;
+    font-size: 1.2rem;
+    width: 50%;
     padding: .8rem;
+    margin-top: 1.5rem;
     transition: .4s background-color;
   }
   .card_action {
-    color: #FD2D01;
+    color: #265beb;
     text-decoration: underline;
   }
   .card_action:hover {
