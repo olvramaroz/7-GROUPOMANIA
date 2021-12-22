@@ -7,6 +7,7 @@
     <p class="card_sub" v-if="mode == 'login'"> Pas de compte ? Inscris-toi 😉 <span class="card_action" @click="switchToCreateAccount()">Créer un compte</span></p>
     <p class="card_sub" v-else>Tu as déjà créé ton profil ? 🥰 <span class="card_action" @click="switchToLogin()">Se connecter</span></p>
     <div class="form-row">
+      <!-- <label for="email">Adresse email : </label> -->
       <input v-model="email" class="form-row_input" type="text" placeholder="Adresse email"/>
     </div>
     <div class="form-row" v-if="mode == 'create'">
@@ -18,7 +19,7 @@
     </div>
     <div class="form-row">
       <button class="button" v-if="mode == 'login'">Connexion</button>
-      <button class="button" v-else>Inscription</button>
+      <button @click="createAccount" class="button" v-else>Inscription</button>
     </div>
   </div>
 </template>
@@ -41,8 +42,19 @@ export default {
         switchToLogin() {
             this.mode = "login";
         },
-    }
+        createAccount() {
+          this.$store.dispatch("createAccount",{
+            email: this.email,
+            password: this.password,
+            nom: this.nom,
+            prenom: this.prenom,
+            })
+            console.log(this.email, this.nom, this.prenom, this.password);
+        },
+    },
+    computed: { // ?
 
+    }
 }
 
 </script>

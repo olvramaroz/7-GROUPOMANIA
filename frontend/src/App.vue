@@ -62,7 +62,7 @@ body {
   .button {
     background: #FD2D01;
     color: #000;
-    /* border: solid 5px #FD2D01; */
+    border: none;
     border-radius: 8px;
     font-weight: 500;
     font-size: 1.2rem;
