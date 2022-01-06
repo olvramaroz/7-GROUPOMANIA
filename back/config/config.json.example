@@ -1,0 +1,31 @@
+/*
+
+1- Remplacer la valeur du "username" et "password"
+par les vôtres quand vous avez créé votre compte MySQL.
+2- Ne pas modifier le reste
+3- Renommer ce fichier "config.json.example" en "config.json"
+*/
+
+{
+  "development": {
+    "username": "xxxxxxx",
+    "password": "xxxxxxx",
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "xxxxxxx",
+    "password": "xxxxxxx",
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "xxxxxxx",
+    "password": "xxxxxxx",
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
