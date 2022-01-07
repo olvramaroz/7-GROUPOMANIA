@@ -30,17 +30,13 @@ export default {
     name: "signup",
     data: function () {
         return {
-      sameEmail: false,
       mode: "signup",
       email: "",
-      errorEmail: false,
       password: "",
-      errorMdp: false,
       lastname: "",
-      errorLastName: false,
       firstname: "",
-      errorFirstName: false,
       incorrect: false,
+      sameEmail: false,
     };
     },
   methods: {

@@ -25,13 +25,11 @@ export default {
     name: "login",
     data: function () {
         return {
-      sameEmail: false,
       mode: "login",
       email: "",
-      errorEmail: false,
       password: "",
-      errorMdp: false,
       incorrect: false,
+      sameEmail: false,
     };
     },
   methods: {

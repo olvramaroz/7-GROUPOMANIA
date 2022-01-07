@@ -53,22 +53,3 @@ server.on("listening", () => {
 
 // écoute sur le port 5000
 server.listen(port);
-
-// // vérification que sequelize se connecte bien à la BDD
-// const sequelize = new Sequelize(
-//   {
-//     username: process.env.BD_NAME,
-//     password: process.env.BD_PASSWORD,
-//     database: "database_development",
-//     host: "127.0.0.1",
-//     dialect: "mysql"
-//   }
-// );
-// sequelize
-//   .authenticate() // authenticate simply runs SELECT 1+1 AS result query to check the db connection
-//   .then(() => {
-//     console.log('La connexion à la BDD a bien été établie.');
-//   }) 
-//   .catch(err => {
-//     console.error('Impossible de se connecter à la base de données:', err);
-//   });

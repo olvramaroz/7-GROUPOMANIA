@@ -36,7 +36,7 @@ const routes = [
     // page des posts du user
     name: "userPosts",
     path: "/api/users/:userId",
-    component: () => import("../views/User.vue"),
+    component: () => import("../views/Users.vue"),
     meta: {
       title: "Profil | Groupomania",
       description: "page profil de l'utilisateur Groupomania"
