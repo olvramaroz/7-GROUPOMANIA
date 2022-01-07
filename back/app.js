@@ -16,14 +16,6 @@ app.use(helmet()); // Protection contre XSS
 app.use(sanitize()); // Protection contre injection SQL
 
 
-// Les routes
-app.use("/api/users", require("./routes/users"));
-app.use("/api/posts", require("./routes/posts"));
-app.use("/api/likes", require("./routes/likes"));
-app.use("/api/comments", require("./routes/comments"));
-app.use('/images', express.static(path.join(__dirname, 'images')))
-
-
 // Les diverses middleware d'autorisation
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -38,6 +30,12 @@ app.use((req, res, next) => {
   next();
 });
 
+// Les routes
+app.use("/api/users", require("./routes/users"));
+app.use("/api/posts", require("./routes/posts"));
+app.use("/api/likes", require("./routes/likes"));
+app.use("/api/comments", require("./routes/comments"));
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 
 module.exports = app;

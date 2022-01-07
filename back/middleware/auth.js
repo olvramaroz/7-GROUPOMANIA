@@ -1,18 +1,18 @@
-const db = require('../models')
-const { User } = db.sequelize.models
+const db = require('../config/db')
 const jwt = require("jsonwebtoken");
 
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET");
+    const decodedToken = jwt.verify(token,process.env.SECRET_TOKEN_KEY);
     const userId = decodedToken.userId;
 
     if (req.body.userId && req.body.userId !== userId) {
       throw "Identifiant non valide";
     } else {
-      User.findOne({ where: { id: userId } }).then(user => {
+      await User.findOne({ where: { id: userId } })
+      .then(user => {
         req.user = user
         next()
       })
