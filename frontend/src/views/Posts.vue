@@ -1,10 +1,11 @@
 <template>
-  <p>test sans router-view</p>
-  <Header />
-  <Posts />
+<div>
+    <Header />
+    <Posts />
+</div>
 </template>
 
-<style scoped></style>
+<style></style>
 
 <script>
 // @ is an alias to /src

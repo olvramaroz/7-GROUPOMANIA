@@ -1,14 +1,14 @@
 <template>
-  <h1>test page about</h1>
-  <Header />
-  <About />
-  
+    <div id="about-page">
+      <Header />
+      <About />
+    </div>
 </template>
 
 <style scoped>
-  h1{
-    color: royalblue;
-  }
+#about-page {
+  background-color: whitesmoke;
+}
 </style>
 
 <script>

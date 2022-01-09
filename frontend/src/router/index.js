@@ -1,18 +1,27 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from "../views/Login.vue";
-// import store from '../store/index'
+
 
 const routes = [
   {
-     // page d'accueil login, "localhost:8080"
-    path: "/", // test d'affichage ok
-    name: "Login",
-    component: Login,
+     // page d'accueil signup, "localhost:8080"
+    path: "/", 
+    name: "Signup",
+    component: () => import("../views/Signup.vue"),
     meta: {
-      title: " Connexion | Groupomania",
-      description: "Connexion Réseau social d'entreprise Groupomania"
+      title: " Inscription | Groupomania",
+      description: "Inscription Réseau social d'entreprise Groupomania"
     },
   },
+  {
+    // page d'accueil login, "localhost:8080"
+   path: "/api/users/login", // test d'affichage ok
+   name: "Login",
+   component: () => import("../views/Login.vue"),
+   meta: {
+     title: " Connexion | Groupomania",
+     description: "Connexion Réseau social d'entreprise Groupomania"
+   },
+ },
   { // page du fil d'actualités
     path: "/api/users/posts", // test d'affichage ok, remplir les tables mysql
     name: "Posts",
@@ -20,16 +29,6 @@ const routes = [
     meta: {
       title: "Publications | Groupomania",
       description: "discussion entre les membres Groupomania"
-    },
-  },
-  {
-    // page d'accueil switch signup
-    name: "Signup", // test d'affichage ok
-    path: "/api/users/signup",
-    component: () => import("../views/Signup.vue"),
-    meta: {
-      title: "Inscription | Groupomania",
-      description: "Inscription Réseau social d'entreprise Groupomania"
     },
   },
   {

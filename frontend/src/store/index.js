@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    CryptoKey : process.env.CryptoKey
+    CryptoKey : "bdJYmxfXTj0KxgNqvRoGsg5zlpMOZg8L1gUh"
   },
   mutations: {},
   actions: {},

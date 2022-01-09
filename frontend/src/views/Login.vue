@@ -4,78 +4,47 @@
   
   <div class="card">
     <h1 class="card_title">Se connecter</h1>
-    <p class="card_sub"> Pas de compte ? Inscris-toi 😉 <router-link to="/api/users/signup" class="card_action" @click="switchToSignup()">Créer un compte</router-link></p>
+    <p class="card_sub"> Pas de compte ? Inscris-toi 😉 <router-link to="/" class="card_action" @click="switchToSignup()">Créer un compte</router-link></p>
+    <form v-on:submit.prevent="login">
     <div class="form-row">
-      <input v-model="email" class="form-row_input" type="text" placeholder="Adresse email"/>
+      <input v-model="email" name="email" class="form-row_input" type="text" placeholder="Adresse email"/>
     </div>
     <div class="form-row">
-      <input v-model="password" class="form-row_input" type="password" placeholder="Mot de passe"/>
+      <input v-model="password" name="password" class="form-row_input" type="password" placeholder="Mot de passe"/>
     </div>
     <div class="form-row">
-      <button @click="login" class="button">Connexion</button>
+      <button type="submit" class="button">Connexion</button>
     </div>
+    </form>
   </div>
+    <router-view />
 </template>
 
 <script>
 import axios from "axios";
-const CryptoJS = require("crypto-js");
 
 export default {
-    name: "login",
-    data: function () {
-        return {
-      mode: "login",
+  name: "login",
+  data() {
+    return {
       email: "",
       password: "",
-      incorrect: false,
-      sameEmail: false,
     };
-    },
+  },
   methods: {
     switchToSignup() {
       this.mode = "signup";
     },
-    login() {
-      this.password = document.querySelector("#passwordCheck").value;
-      this.email = document.querySelector("#emailCheck").value;
-      const self = this;
-      axios
-        .post("http://localhost:5000/api/users/login", {
+    async login() {
+      const response = await axios.post("/api/users/login", {
           email: this.email,
-          password: this.password,
-        })
-        .then(function (response) {
-          const token = response.data.token;
-          const num = response.data.userId;
-          const userId = CryptoJS.AES.encrypt(
-            num.toString(),
-            self.$store.state.CryptoKey
-          ).toString();
-          document.cookie = `user-token=${token}; SameSite=Lax; Secure; max-age=86400;`;
-          document.cookie = `userId=${userId}; SameSite=Lax; Secure; max-age=86400;`;
-          self.$router.push("/api/users/posts");
-          self.$router.go();
-        })
-        .catch(function (error) {
-          if (error) {
-            self.incorrect = true;
-          }
-        });
+          password: this.password
+      });
+
+      localStorage.setItem('token', response.data.token);
+      this.$router.push("/api/users/posts");
     },
-  },
-  mounted() {
-    if (document.cookie) {
-      const userIdCookie = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("userId="))
-        .split("=")[1];
-      console.log(userIdCookie);
-      if (userIdCookie) {
-        this.$router.push("/");
-      }
-    }
-  },
+  }
 };
 </script>
 

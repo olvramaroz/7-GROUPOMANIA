@@ -1,16 +1,15 @@
 <template>
       <h1>page profile : à propos, edit profil et supprimer compte</h1>
       
-    <router-view />
 </template>
 
 <script>
 export default {
-    
+    name: 'About',
 }
 </script>
 
-<style scoped>
+<style>
  h1 {
      color: red;
  }

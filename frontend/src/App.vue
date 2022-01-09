@@ -2,6 +2,13 @@
   <router-view />
 </template>
 
+<script>
+
+export default {
+  name: 'App'
+}
+</script>
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;800&display=swap');
@@ -22,5 +29,8 @@ body {
   justify-content: center;
   min-height: 100vh;
   padding:32px;
+}
+.home, .container {
+  margin-top: 50px;
 }
 </style>

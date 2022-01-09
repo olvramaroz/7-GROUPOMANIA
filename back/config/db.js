@@ -8,15 +8,13 @@ const pool = mysql.createPool({
     password: process.env.DB_PASSWORD,
 })
 
-// vérifier qu'on est bien connecté à la BDD
-let sql = "SELECT * FROM users;";
-pool.execute(sql, function(err, result) {
-    if(err) throw err;
-    result.forEach(res => {
-        console.log(res.firstname);
-    });
-});
-// terminal : node config/db.js
+pool.query('SELECT 1 + 1 AS solution', (err, result) => {
+    if (err) {
+      console.log("connexion à la BDD échouée");
+      throw err;
+    }
+    console.log(" Connexion à la BDD réussie !");
+  });
 
 
 module.exports = pool.promise();
