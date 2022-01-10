@@ -4,14 +4,14 @@
             <h1>Bonjour mur des publications! </h1>
         </div>
     </div>
-<router-view />
+
 </template>
 
 <script>
 // import axios from 'axios';
 
 export default {
-    name: "Posts",
+    name: "PostsList",
     components: {
         
     }

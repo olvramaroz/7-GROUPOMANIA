@@ -35,11 +35,12 @@
 
 <script>
 import axios from 'axios'
+
 export default {
     name: 'Header',
     data() {
       return {
-        user: null
+        user: ''
       }
     },
   async created () {
@@ -83,7 +84,7 @@ export default {
   margin: 0 40px 0 0;
   border-radius: 100%;
 }
-.router-link-exact-active {
+.router-link-active {
     color: #d1515a;
 }
 </style>

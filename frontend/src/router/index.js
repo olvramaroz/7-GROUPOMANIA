@@ -23,7 +23,7 @@ const routes = [
    },
  },
   { // page du fil d'actualités
-    path: "/api/users/posts", // test d'affichage ok, remplir les tables mysql
+    path: "/api/users/posts", // test d'affichage ko, remplir les tables mysql
     name: "Posts",
     component: () => import("../views/Posts.vue"),
     meta: {

@@ -2,7 +2,7 @@ const dotenv = require("dotenv").config();
 const { pool } = require('../config/db');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const db = require("../config/db");
+// const db = require("../config/db");
 
 /********
   CREATE 
@@ -40,45 +40,6 @@ exports.signup = (req, res, next) => {
   })
 };
 
-////// VERSION DEUX SIGNUP - NE RECOIT PAS LA DATA DU FRONT //////////////
-// exports.signup = (req, res, next) => {
-//   console.log(req.body);
-//   const { lastname, firstname, email, password } = req.body;
-//   const imageUrl = `${req.protocol}://${req.get('host')}/images/default-user.jpg`;
-
-//   db.query(`SELECT * FROM users WHERE email=?`, [email], async (error, result) => {
-//     if (error) {
-//       console.log(error);
-//     }
-//     if(result.lenght > 0) {
-//       return res.render('signup', {
-//         message: 'Erreur au niveau du mail ou mot de passe' // erreur: email déjà utilisé, mais doubler de vigilance sur les messages pour tromper les pirates
-//       });
-//     }
-//     let hashedPassword = await bcrypt.hash(req.body.password, 8)
-//     console.log(hashedPassword);
-
-//     db.query(
-//       `INSERT INTO users SET ?`,
-//       {lastname: lastname, firstname: firstname, email: email, password: hashedPassword, userpicture: imageUrl},
-//       (error, result) => {
-//         if (error) {
-//           console.log(error);
-//         } else {
-//           console.log(result);
-//           return res.render('signup', {
-//             message: 'Utilisateur enregistré'
-//           });
-//         }
-//       }
-//     )
-//     .catch(error => res.status(500).json({ error }));
-//   })
-// }
-
-
-////////////////////////////////////////
-
 // login
 exports.login = (req, res, next) => {
   let sql = `SELECT * FROM users WHERE email=?`;
@@ -109,7 +70,7 @@ exports.login = (req, res, next) => {
 *********/
 
 // getOne
-exports.getOne = (req, res, next) => {
+exports.getOneUser = (req, res, next) => {
   console.log("getOne user");
 };
 

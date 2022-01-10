@@ -22,6 +22,7 @@
 
 <script>
 import axios from "axios";
+// import '@/services/authUser'
 
 export default {
   name: "login",
