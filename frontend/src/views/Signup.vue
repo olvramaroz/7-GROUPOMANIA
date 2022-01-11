@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import axios from "axios";
-// import '@/services/authUser'
+import { userNotLogged } from "@/services/authUser.js"
+
 
 export default {
   name: "signup",
@@ -79,16 +79,25 @@ export default {
         controlFirstName && controlLastName && controlEmail && controlPassword
       );
     },
-    async signup() {
-        await axios.post("/api/users/signup", {
+    signup() {
+    userNotLogged.post("/api/users/signup", {
           lastname: this.lastname,
           firstname: this.firstname,
           email: this.email,
           password: this.password
-        });
-        this.$router.push("/api/users/login");
+        })
+
+        .then((res) => {
+          if(res.status === 201) {
+              const groupomaniaUser = { token: res.data.token }
+              localStorage.setItem('groupomaniaUser', JSON.stringify(groupomaniaUser));
+              this.$router.push("/api/users/login")
+          }
+        })
+
+        .catch((error) => { this.message = error.response.data.error; })
       }
-}
+  }
 };
 </script>
 

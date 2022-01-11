@@ -9,10 +9,10 @@
         <ul class="nav flex-space-between">
           <li class="nav-item"> <!-- userPosts -->
             <a class="nav-link">
-              <router-link :to="{ name: 'user', params: { userId: user.id } }">
+              <!-- <router-link :to="{ name: 'user', params: { userId: user.id } }"> -->
                   <p class="nav-p">Mes publications</p>
                 <!-- <img v-bind:src="user.userpicture" alt="photo de profil utilisateyr" class="userPosts" @click="refresh"/> -->
-              </router-link>
+              <!-- </router-link> -->
             </a>
           </li>
           <li class="nav-item"> <!-- editUser -->
@@ -24,7 +24,7 @@
           </li>
           <li class="nav-item"> <!-- logout -->
             <a class="nav-link">
-              <router-link to="/api/users/login">
+              <router-link to="/api/users/login" v-on:click="logout()">
                 <p class="nav-p">Me déconnecter</p>
               </router-link>
             </a>
@@ -34,18 +34,17 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
     name: 'Header',
     data() {
       return {
-        user: ''
+        
       }
     },
-  async created () {
-    const response = await axios.get('user');
-    this.user = response.data;
+  logout () {
+    localStorage.removeItem('groupomaniaUser');
+    location.href = '/';
   }
 }
 </script>

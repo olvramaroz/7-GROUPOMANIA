@@ -8,17 +8,17 @@ const multer = require("../middleware/multer-config");
 
 /**** CRUD POSTS ****/
 // create
-router.post("/", auth, multer, postsCtrl.createPost); //create
+router.post("/posts", auth, multer, postsCtrl.createPost); //create
 
 // read
-router.get("/", auth, postsCtrl.getAllPosts); //auth, 
-router.post("/byAuthor",postsCtrl.getPostByAuthor);
+router.get("/posts", auth, postsCtrl.getAllPosts); //auth, 
+router.post("/posts/byAuthor",postsCtrl.getPostByAuthor);
 
 // update
-router.put("/:id", multer, postsCtrl.modifyPost); //modify
+router.put("/posts/:id", multer, postsCtrl.modifyPost); //modify
 
 // delete
-router.delete("/:id", auth, postsCtrl.deletePost); //auth, delete
+router.delete("/posts/:id", auth, postsCtrl.deletePost); //auth, delete
 
 
 

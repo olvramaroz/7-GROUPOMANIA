@@ -1,5 +1,6 @@
 <template>
-    <div class="card">
+    <!-- Create Post -->
+    <div id="create-post" class="card">
         <div class="form ">
             <form v-on:submit.prevent>
                 <img v-bind:src="user.userpicture" class="userpicture_post" alt="photo de profil utilisateur">
@@ -12,7 +13,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> <!-- End Create Post -->
 </template>
 
 <style >

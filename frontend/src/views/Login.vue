@@ -21,32 +21,37 @@
 </template>
 
 <script>
-import axios from "axios";
-// import '@/services/authUser'
+import { userNotLogged } from "@/services/authUser.js"
 
 export default {
   name: "login",
   data() {
     return {
       email: "",
-      password: "",
+      password: ""
     };
   },
   methods: {
     switchToSignup() {
       this.mode = "signup";
     },
-    async login() {
-      const response = await axios.post("/api/users/login", {
+    login() {
+      userNotLogged.post("/api/users/login", {
           email: this.email,
           password: this.password
-      });
+      })
 
-      localStorage.setItem('token', response.data.token);
-      this.$router.push("/api/users/posts");
-    },
+      .then((res) => {
+        if(res.status === 200) { 
+          const groupomaniaUser = { token: res.data.token }
+                localStorage.setItem('groupomaniaUser', JSON.stringify(groupomaniaUser));
+                this.$router.push("/api/users/posts");
+            }
+        })
+      .catch((error) => { this.message = error.response.data.error; })
+    }
   }
-};
+}
 </script>
 
 <style>
