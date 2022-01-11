@@ -1,7 +1,6 @@
 <template>
 
     <Header />
-    <CreatePost />
     <Posts />
     
     <router-view />
@@ -10,16 +9,14 @@
 <style></style>
 
 <script>
- 
+// import { userNotLogged } from "@/store/index"
 import Header from "@/components/Header.vue"
-import CreatePost from "@/components/CreatePost.vue"
 import Posts from "@/components/Posts.vue"
 
 export default {
   name: "Posts",
   components: {
     Header,
-    CreatePost,
     Posts
   }
 };

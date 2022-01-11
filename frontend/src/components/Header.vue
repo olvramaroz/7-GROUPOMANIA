@@ -1,24 +1,25 @@
 <template>
-  <nav class="navbar nav flex-center fixed-top">
-        <a class="nav-link">
-            <router-link to="/api/users/posts">
-                <img class="nav-logo" src="../assets/logo.png" alt="mur des publications"/>
-            </router-link>
-        </a>
+<div id="navigation">
+  <nav class="navbar flex-evenly fixed-top">
+    <router-link to="/api/users/posts">
+      <img class="nav-logo" src="../assets/logo.png" alt="mur des publications"/>
+      <!-- <br><span class="p-small">Partagez et restez en contact avec vos collègues</span> -->
+    </router-link>
 
-        <ul class="nav flex-space-between">
+        <ul class="flex-evenly width100">
           <li class="nav-item"> <!-- userPosts -->
             <a class="nav-link">
-              <!-- <router-link :to="{ name: 'user', params: { userId: user.id } }"> -->
-                  <p class="nav-p">Mes publications</p>
-                <!-- <img v-bind:src="user.userpicture" alt="photo de profil utilisateyr" class="userPosts" @click="refresh"/> -->
-              <!-- </router-link> -->
+              <p class="nav-p" src="" alt="Mes publications">Mes publications</p>
+              <!-- <router-link 
+                :to="{ name: 'groupomaniaUser', params: { userId: groupomaniaUser.id }}"
+              ><img v-bind:src="groupomaniaUser.userpicture" alt="photo de profil utilisateyr" class="userPosts"/>
+              </router-link> -->
             </a>
           </li>
           <li class="nav-item"> <!-- editUser -->
             <a class="nav-link">
               <router-link to="/api/users/about">
-                <p class="nav-p">Mon compte</p>
+                <p class="nav-p">Mon profil</p>
               </router-link>
             </a>
           </li>
@@ -31,9 +32,11 @@
           </li>
         </ul>
   </nav>
+</div>
 </template>
 
 <script>
+// import { userLogged } from "@/store/index"
 
 export default {
     name: 'Header',
@@ -50,40 +53,6 @@ export default {
 </script>
 
 <style>
-.navbar{
-  background-color: seagreen;
-}
-.nav{
-    padding-bottom: 30px;
-}
-.flex-center {
-    display: flex;
-    justify-content: center;
-}
-.fixed-top {
 
-}
-.nav-link {
 
-}
-.nav-logo {
-    width: 200px;
-}
-.nav-item {
-
-}
-.nav-p {
-    font-weight: bold;
-    color: #2c3e50;
-}
-.userPosts {
-  object-fit: cover;
-  height: 40px;
-  width: 40px;
-  margin: 0 40px 0 0;
-  border-radius: 100%;
-}
-.router-link-active {
-    color: #d1515a;
-}
 </style>

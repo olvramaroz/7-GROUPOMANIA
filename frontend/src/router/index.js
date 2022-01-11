@@ -33,12 +33,12 @@ const routes = [
   },
   {
     // page des posts du user
-    name: "userPosts",
+    name: "UserPosts",
     path: "/api/users/:userId",
-    component: () => import("../views/Users.vue"),
+    component: () => import("../views/UserPosts.vue"),
     meta: {
       title: "Profil | Groupomania",
-      description: "page profil de l'utilisateur Groupomania"
+      description: "page publication de l'utilisateur Groupomania"
     },
   },
   {
