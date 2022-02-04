@@ -1,20 +1,20 @@
 <template>
-
-    <Header />
-    <Posts />
-    
-    <router-view />
+  <div class="home">
+    <div class="container">
+      <Header />
+      <Posts />
+    </div>
+  </div>
 </template>
 
-<style></style>
 
 <script>
-// import { userNotLogged } from "@/store/index"
-import Header from "@/components/Header.vue"
-import Posts from "@/components/Posts.vue"
+import Header from "@/components/Header.vue";
+import Posts from "@/components/Posts.vue";
 
 export default {
-  name: "Posts",
+  name: "posts",
+
   components: {
     Header,
     Posts

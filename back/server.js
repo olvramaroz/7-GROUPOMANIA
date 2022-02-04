@@ -1,5 +1,6 @@
 // pour protéger les informations de connexion vers la BDD
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 
 const http = require("http");
 const app = require("./app");
@@ -19,6 +20,11 @@ const normalizePort = (val) => {
 
 const port = normalizePort(process.env.PORT || "5000");
 app.set("port", port);
+
+const corsOptions = {
+  origin: "*"
+};
+app.use(cors(corsOptions));
 
 // gérer les erreurs
 const errorHandler = (error) => {

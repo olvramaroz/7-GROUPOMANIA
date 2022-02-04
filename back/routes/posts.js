@@ -2,23 +2,26 @@ const express = require("express");
 const router = express.Router();
 
 const postsCtrl = require("../controllers/posts");
-const auth = require("../middleware/auth");
+const { checkToken } = require("../middleware/auth");
 const multer = require("../middleware/multer-config");
 
 
+/* BASE_URL '/' = http://localhost:5000/api/posts */
+
 /**** CRUD POSTS ****/
 // create
-router.post("/posts", auth, multer, postsCtrl.createPost); //create
+router.post("/", checkToken, multer, postsCtrl.createPost); //create
 
 // read
-router.get("/posts", auth, postsCtrl.getAllPosts); //auth, 
-router.post("/posts/byAuthor",postsCtrl.getPostByAuthor);
+router.get("/", checkToken, postsCtrl.getAllPosts);
+router.post("/byAuthor", postsCtrl.getPostByAuthor);
 
 // update
-router.put("/posts/:id", multer, postsCtrl.modifyPost); //modify
+// router.put("/:id", multer, postCtrl.modify);
+router.put("/update/:id", checkToken, multer, postsCtrl.updatePost);
 
 // delete
-router.delete("/posts/:id", auth, postsCtrl.deletePost); //auth, delete
+router.delete("/:id", checkToken, postsCtrl.deletePost);
 
 
 

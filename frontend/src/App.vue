@@ -40,7 +40,6 @@ a:link {
 .router-link-active {
     color: #d1515a;
 }
-
 .block-auto {
   display: block;
   margin: auto;
@@ -48,6 +47,10 @@ a:link {
 .flex-column{
   display: flex;
   flex-direction: column;
+}
+.flex-row{
+  display: flex;
+  flex-direction: row;
 }
 .flex-center {
   display: flex;
@@ -61,13 +64,22 @@ a:link {
     display: flex;
     justify-content: space-between;
 }
-
+.align-items-center {
+    display: flex;
+    align-items: center;
+}
+.margin-bottom-2 {
+  margin-bottom: 2px;
+}
 .width100 {
   width: 100%;
 }
 .p-small {
   font-size: 13px;
   color: #2c3e50;
+}
+.font-weight-bold {
+  font-weight: bold;
 }
 
 /* HEADER NAVBAR */
@@ -91,9 +103,7 @@ a:link {
   /* border-width: 5px; */
   border-radius: 50% 20% / 10% 40%;
 }
-.nav-link {
 
-}
 .nav-p {
     font-size: 1rem;
     font-weight: 500;
@@ -144,6 +154,7 @@ a:link {
   background: #fff;
   border-radius: 16px;
   padding:32px;
+  margin-bottom: 50px;
 }
 .card_title {
   text-align:center;
@@ -179,5 +190,131 @@ a:link {
   color: #000;
 }
 
+/* POSTS */
+.div-form {
+  width: 90%;
+}
+.infopost {
+  position: relative;
+}
+.userpicture {
+  object-fit: cover;
+  margin-right: 18px;
+  height: 55px;
+  width: 55px;
+}
+.userpicture_post {
+  height: 45px;
+  width: 45px;
+  margin-right: 10px;
+  border-radius: 100%;
+  object-fit: cover;
+}
+.message_bloc {
+  background-color: cadetblue;
+}
+.description {
+  display: block;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #091f43;
+}
+.publish {
+  width: 100px;
+}
+.username {
+  font-weight: bold;
+  font-size: 19px;
+  color: #091f43;
+}
+.postdate {
+  font-size: 50;
+  color: #2c3e50;
+}
+.bg-white {
+  background-color: #fff;
+}
+.posts:hover .deletePost {
+    display: inline;
+}
+.deletePost {
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  display: none;
+  cursor: pointer;
+}
+.delete {
+  height: 15px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  display: none;
+  cursor: pointer;
+  margin-left: 20px;
+}
 
+/* REACT */
+.react {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+.like {
+  margin: auto;
+  cursor: pointer;
+}
+.heart {
+  animation: heart 0.3s cubic-bezier(0.06, 1.16, 0.83, 0.67);
+}
+.svg-react:hover {
+  fill: #aaaaaa;
+  animation: heart 0.5s cubic-bezier(0.06, 1.16, 0.83, 0.67) forwards;
+}
+@keyframes heart {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+.nbr {
+  font-weight: 300;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.comment {
+  margin: auto;
+}
+.disp {
+  display: none;
+}
+.comments {
+  display: flex;
+}
+.userpicture2 {
+  object-fit: cover;
+  height: 40px;
+  width: 40px;
+  margin-left: 20px;
+}
+.commentText {
+  margin-left: 10px;
+  margin-right: 10px;
+  color: #091f43;
+}
+.commentAuthor {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 10px;
+  color: #091f43;
+}
 </style>

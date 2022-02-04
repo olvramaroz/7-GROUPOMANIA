@@ -1,8 +1,8 @@
 <template>
-    <div id="about-page">
+  <div>
       <Header />
       <About />
-    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -17,10 +17,10 @@ import Header from "@/components/Header.vue";
 import About from "@/components/About.vue";
 
 export default {
-  name: "About",
+  name: "about",
   components: {
     Header,
-    About,
+    About
   },
 };
 </script>

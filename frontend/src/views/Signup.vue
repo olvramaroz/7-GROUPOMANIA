@@ -2,7 +2,7 @@
 
   <div class="flex-column">
     <img id="logo" alt="Groupomania logo" src="../assets/logo.png">
-    <p id="intro">Partagez et restez en contact avec vos collègues.</p>
+    <!-- <p id="intro">Partagez et restez en contact avec vos collègues.</p> -->
   </div>
 
   <div class="card block-auto">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { userNotLogged } from "@/store/index"
+import axios from "axios";
 
 
 export default {
@@ -84,7 +84,7 @@ export default {
       );
     },
     signup() {
-    userNotLogged.post("/api/users/signup", {
+    axios.post("http://localhost:5000/api/users/signup", {
           lastname: this.lastname,
           firstname: this.firstname,
           email: this.email,
@@ -93,9 +93,7 @@ export default {
 
         .then((res) => {
           if(res.status === 201) {
-              const groupomaniaUser = { token: res.data.token }
-              localStorage.setItem('groupomaniaUser', JSON.stringify(groupomaniaUser));
-              this.$router.push("/api/users/login")
+              this.$router.push("http://localhost:5000/api/users/login")
               alert("Votre compte a bien été créé, veuillez vous connecter.")
           }
         })

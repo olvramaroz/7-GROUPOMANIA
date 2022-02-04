@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.1.0",
+  "version": "7.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -11,7 +11,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "jsonwebtoken": "^8.5.1",
-    "vue": "^3.0.0",
+    "vue": "^3.2.20",
     "vue-cryptojs": "^2.2.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"

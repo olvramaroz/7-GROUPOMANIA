@@ -1,8 +1,8 @@
 <template>
-<div class="flex-column">
-  <img id="logo" alt="Groupomania logo" src="../assets/logo.png">
-  <p id="intro">Partagez et restez en contact avec vos collègues.</p> 
-</div>
+  <div class="flex-column">
+    <img id="logo" alt="Groupomania logo" src="../assets/logo.png">
+    <p id="intro">Partagez et restez en contact avec vos collègues.</p> 
+  </div>
 
   <div class="card block-auto">
     <h1 class="card_title">Se connecter</h1>
@@ -19,11 +19,11 @@
     </div>
     </form>
   </div>
-    <router-view />
+  <router-view />
 </template>
 
 <script>
-import { userNotLogged } from "@/store/index"
+import axios from "axios";
 
 export default {
   name: "login",
@@ -38,16 +38,16 @@ export default {
       this.mode = "signup";
     },
     login() {
-      userNotLogged.post("/api/users/login", {
+      axios.post("http://localhost:5000/api/users/login", {
           email: this.email,
           password: this.password
       })
 
       .then((res) => {
-        if(res.status === 200) { 
-          const groupomaniaUser = { token: res.data.token }
-                localStorage.setItem('groupomaniaUser', JSON.stringify(groupomaniaUser));
-                this.$router.push("/api/users/posts");
+        if(res.status === 200) {
+          const user = { token: res.data.token, userId : res.data.userId }
+            localStorage.setItem('user', JSON.stringify(user));
+            this.$router.push("/api/posts");
             }
         })
       .catch((error) => { this.message = error.response.data.error; })
