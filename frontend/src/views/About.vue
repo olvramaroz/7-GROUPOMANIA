@@ -1,7 +1,10 @@
 <template>
-  <div>
+  <div class="posts">
+    <div class="container">
       <Header />
       <About />
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -15,12 +18,15 @@
 // @ is an alias to /src
 import Header from "@/components/Header.vue";
 import About from "@/components/About.vue";
+import Footer from "@/components/Footer.vue";
+
 
 export default {
   name: "about",
   components: {
     Header,
-    About
+    About,
+    Footer
   },
 };
 </script>

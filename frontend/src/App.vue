@@ -1,16 +1,12 @@
 <template>
-
   <router-view />
 </template>
 
 <script>
-
 export default {
-  name: 'App'
-}
-
+  name: "app"
+};
 </script>
-
 
 <style>
 
@@ -21,15 +17,16 @@ export default {
 body {
   font-family: 'Poppins', sans-serif;
   margin:0;
-  padding: 0;
-  box-sizing: border-box;
   background-color: #F0F2F5;
+}
+* {
+  box-sizing: border-box;
 }
 #app {
   max-width: 100%;
 }
 .home, .container {
-  margin-top: 50px;
+  margin-top: 8rem;
 }
 li{
     list-style: none;
@@ -81,25 +78,32 @@ a:link {
 .font-weight-bold {
   font-weight: bold;
 }
-
-/* HEADER NAVBAR */
-#navigation {
-  background-color: !important#fff;
+.m-auto {
+  margin: auto;
 }
+.m-0 {
+  margin: 0;
+}
+.p-7 {
+  padding: 0.7em;
+}
+/* HEADER NAVBAR */
+/* #navigation {
+  background-color: !important#fff;
+} */
 .navbar{
   background-color: #fff;
   overflow: hidden;
   position: fixed;
   top: 0;
   width: 100%;
-  border-bottom: 1px solid #dbdbdb;
+  border-bottom: 3px solid #dbdbdb;
 }
 .nav-logo {
-    width: 300px;
-    padding-top: 15px;
+  height: 53px;
 }
 .nav-item {
-  border-bottom: 5px solid #FD5B39;
+  border-bottom: 3px solid #FD5B39;
   /* border-width: 5px; */
   border-radius: 50% 20% / 10% 40%;
 }
@@ -191,8 +195,18 @@ a:link {
 }
 
 /* POSTS */
-.div-form {
-  width: 90%;
+.createPost-btn {
+  background: #fdfdfd;
+  width: 30%;
+  border-radius: 8px;
+}
+.createPost-btn:hover {
+  background: #FFD7D7;
+  cursor:pointer;
+}
+.textarea {
+  width: 480px;
+  height: 93px;
 }
 .infopost {
   position: relative;
@@ -221,9 +235,6 @@ a:link {
   margin-left: auto;
   margin-right: auto;
   color: #091f43;
-}
-.publish {
-  width: 100px;
 }
 .username {
   font-weight: bold;

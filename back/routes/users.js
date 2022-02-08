@@ -13,9 +13,7 @@ router.post("/signup", multer, usersCtrl.signup);           http://localhost:500
 router.post("/login", usersCtrl.login);                     http://localhost:5000/api/users/login STATUS OK, UserId et Token générés
 
 // read
-// router.post("/", auth, userCtrl.getOne); thom
-router.get("/getOneUser/:id", checkToken, usersCtrl.getOneUser); http://localhost:5000/api/users/getOneUser/1 STATUS OK - "userId": 3
-router.get("/getAs", checkToken, usersCtrl.getAs);               http://localhost:5000/api/users/getAs - non testé
+router.get("/getOneUser/:id", checkToken, usersCtrl.getOneUser); http://localhost:5000/api/users/getOneUser/1 STATUS OK - "userId": 3             http://localhost:5000/api/users/getAs - non testé
 
 // update
 router.patch("/updateUserPicture/:id", checkToken, multer, usersCtrl.updateUserPicture);    http://localhost:5000/api/users/updateUserPicture/3 - STATUS KO

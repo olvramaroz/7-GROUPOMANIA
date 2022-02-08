@@ -15,7 +15,7 @@ exports.signup = (req, res, next) => {
   pool.execute(sql, [req.body.email], function (err, result) {
     let user = result[0];
 
-    if (!user) { 
+    if (!user) {
       bcrypt.hash(req.body.password, 8)
       .then(hash => {
         const image = `${req.protocol}://${req.get('host')}/images/default-user.svg`;

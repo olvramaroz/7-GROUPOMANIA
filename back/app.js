@@ -20,6 +20,9 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+
 app.use(helmet()); // Protection contre XSS
 app.use(sanitize()); // Protection contre injection SQL
 
@@ -27,8 +30,8 @@ app.use(sanitize()); // Protection contre injection SQL
 // Les routes
 app.use("/api/users", require("./routes/users"));
 app.use("/api/posts", require("./routes/posts"));
-// app.use("/api/likes", require("./routes/likes"));
-// app.use("/api/comments", require("./routes/comments"));
+app.use("/api/likes", require("./routes/likes"));
+app.use("/api/comments", require("./routes/comments"));
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 

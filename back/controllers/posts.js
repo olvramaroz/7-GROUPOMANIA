@@ -11,15 +11,15 @@ exports.createPost = (req, res, next) => {
 
     const post = {
         description: message,
-        image_url: image,
+        imageUrl: image,
         like: 0,
         comment: 0,
         date: new Date().toLocaleString("af-ZA", { timeZone: "Europe/Paris" }),
-        authorId: req.body.user_id,
+        authorId: req.body.userId,
     };
 
-    let sql = `INSERT INTO posts (description, image_url, creation_date, user_id)  VALUES (?,?,?,?);`;
-    pool.execute(sql, [post.description, post.image_url, post.date, post.authorId], function (err, result) {
+    let sql = `INSERT INTO posts (description, imageUrl, creation_date, authorId)  VALUES (?,?,?,?);`;
+    pool.execute(sql, [post.description, post.imageUrl, post.date, post.authorId], function (err, result) {
         if (err) throw err;
         res.status(201).json({ message: `Publication ajoutée` });
     })
@@ -27,7 +27,7 @@ exports.createPost = (req, res, next) => {
 
 // read
 exports.getAllPosts = (req, res, next) => {
-    let sql = "SELECT * FROM posts JOIN user WHERE users.id=authorId ORDER BY date DESC LIMIT 50;";
+    let sql = "SELECT * FROM posts JOIN users WHERE users.id=authorId ORDER BY date DESC LIMIT 50;";
     pool.execute(sql, function (err, result) {
         if (err) res.status(400).json({ err });
         res.status(200).json(result)
@@ -35,7 +35,7 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 exports.getPostByAuthor = (req, res, next) => {
-    let sql = `SELECT * FROM posts JOIN user WHERE users.id=authorId AND authorId=? ORDER BY date DESC;`;
+    let sql = `SELECT * FROM posts JOIN users WHERE users.id=authorId AND authorId=? ORDER BY date DESC;`;
     pool.execute(sql, [req.body.id], function (err, result) {
         if (err) res.status(400).json({ err });
         res.status(200).json(result)

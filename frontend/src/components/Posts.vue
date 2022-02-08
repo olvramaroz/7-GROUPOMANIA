@@ -1,20 +1,18 @@
 <template>
-<router-view>
-  <Header />
-
 <!-- Create Post -->
-  <div class="card flex-center align-items-center">
-    <div class="div-form">
+  <div class="card block-auto">
+    <div>
+      <p class="card_sub"> 👋 Quoi de neuf aujourd'hui ? </p>
       <form v-on:submit.prevent>
-        <div class="flex-center align-items-center">
-          <img v-bind:src="users.userpicture" class="userpicture_post" alt="photo de profil utilisateur">
-          <input id="description" v-model="newPost.description" type="text" class="message_bloc" v-bind:placeholder="`Quoi de neuf ${users.firstname} ?`">
+        <div class="form-row">
+          <!-- <img v-bind:src="users.userpicture" class="userpicture_post" alt="photo de profil utilisateur"> -->
+          <textarea id="description" v-model="newPost.description" type="text" class="form-row_input textarea"></textarea>
         </div>
 
-        <div class="flex-space-between">
-          <label for="file">Ajouter un fichier</label>
+        <div class="flex-row flex-space-between">
+          <!-- <label for="file">Ajouter un fichier</label> -->
           <input id="file" name="file" @change="uploadfile" type="file" accept=".jpg, .jpeg, .gif, .png, .webp"/>
-          <button @click="addPost()" class="button publish">Publier 😎</button>
+          <button @click="createPost()" class="createPost-btn">Publier 📣</button>
         </div>
       </form>
     </div>
@@ -22,6 +20,7 @@
 <!-- End Create Post -->
 
 <!-- Show Posts -->
+  <div class="card flex-center width100 m-auto">
       <div v-for="post in posts" :key="post.postId" class="card flex-center">
         <div class="bg-white posts">
           
@@ -29,9 +28,9 @@
           <div>
             <div class="flex-row flex-space-between align-items-center infopost">
               <div class="flex-row align-items-center">
-                <router-link :to="{ name: 'user', params: { userId: post.authorId } }">
-                  <img class="rounded-circle userpicture" v-bind:src="post.userpicture" width="45"/>
-                </router-link>
+                <!-- <router-link :to="{ name: 'user', params: { userId: post.authorId } }"> -->
+                  <!-- <img class="rounded-circle userpicture" v-bind:src="post.userpicture" width="45"/> -->
+                <!-- </router-link> -->
 
                 <div class="flex-column">
                   <span class="font-weight-bold username">{{ post.firstname }} {{ post.lastname }}</span>
@@ -84,9 +83,9 @@
           <div class="disp">
             <div class="comments" v-for="comment in comments" :key="comment.idComment">
               <div class="userpicture" v-if="post.postId === comment.postId">
-                <router-link :to="{ name: 'user', params: { userId: comment.authorId } }">
+                <!-- <router-link :to="{ name: 'user', params: { userId: comment.authorId } }">
                   <img class="userpicture2" v-bind:src="comment.userpicture" alt="utilisateur" srcset=""/>
-                </router-link>
+                </router-link> -->
               </div>
               <div v-if="post.postId === comment.postId" class="commentaire">
                 <span class="commentAuthor">{{ comment.firstname }} {{ comment.lastname }}</span>
@@ -101,17 +100,17 @@
 
         </div> <!--end bloc post -->
       </div>
+  </div>
 <!-- End Show Posts -->
 
-  <Footer />
-</router-view>
 </template>
 
 <script>
 import axios from "axios";
 import authHeader from "../main";
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
+// import authHeader from "../services/authHeader";
+// import Header from '@/components/Header.vue';
+// import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'posts',
@@ -122,38 +121,40 @@ export default {
         file: null,
       },
       posts: [],
-      user: null,
+      users: null,
       likedPost: [],
-    };
+      userId: JSON.parse(localStorage.user).userId,
+      token: JSON.parse(localStorage.user).token,
+    }
   },
   components: {
-    Header,
-    Footer
+    // Header,
+    // Footer
   },
   methods: {
     uploadfile(event) {
       this.file = event.target.files[0];
     },
-    addPost() {
+    createPost() {
       const fd = new FormData();
       fd.append("description", this.newPost.description);
       fd.append("file", this.file);
       
-      console.log("test recup", fd.get("description"));
-      console.log("Test recup", fd.get("file"));
+      console.log("description", fd.get("description"));
+      console.log("file", fd.get("file"));
 
       const self = this;
-      axios.post("http://localhost:5000/api/posts", fd, { headers: { Authorization: authHeader() } })
-      .then(function (res) { console.log(res); self.getPost(); })
+      axios.post("http://localhost:5000/api/posts", fd, { headers: { Authorization: authHeader() }, })
+      .then(function (res) { console.log(res); self.getPost(); alert("Publication ajoutée !") })
       .catch(function (error) { console.log(error); });
     },
     getPost() {
       const self = this;
-      axios.get("http://localhost:5000/api/posts", { headers: { Authorization: authHeader() } })
+      axios.get("http://localhost:5000/api/posts", { headers: { Authorization: authHeader() },})
       .then((res) => res.json())
       .then((data) => (this.posts = data))
       .catch((error) => { if (error.res && error.res.status === 401) { self.$router.push("/"); } });
-      axios.get("http://localhost:5000/api/comments", { headers: { Authorization: authHeader() } })
+      axios.get("http://localhost:5000/api/comments", { headers: { Authorization: authHeader() }, })
         .then((res) => (this.comments = res.data))
         .catch((error) => { if (error.res && error.res.status === 401) { self.$router.push("/"); } });
     },
@@ -177,7 +178,7 @@ export default {
     },
     liked() {
       const self = this;
-      axios.post("http://localhost:(5000/api/likeS/liked", { userId: this.userId })
+      axios.post("http://localhost:(5000/api/likes/liked", { userId: this.userId })
         .then(function (res) {
           const ObjlikedPosts = res.data;
           self.likedPost = [];
@@ -240,6 +241,30 @@ export default {
     upload(event) {
       this.newComment = event.target.value;
     }
-  }
+  },
+  mounted() {
+    this.userId = JSON.parse(localStorage.user).userId;
+    this.token = JSON.parse(localStorage.user).token;
+    const self = this;
+    axios.post(
+        "http://localhost:5000/api/users",
+        { userId: self.userId },
+        { headers: { Authorization: authHeader() },}
+      )
+      .then((response) => {
+        self.user = response.data[0];
+      })
+      .catch(function (error) {
+        if (error.response && error.response.status === 400) {
+          self.$router.push("/");
+        }
+      });
+
+    this.getPost();
+    this.liked();
+    if (!this.userId) {
+      this.$router.push("/");
+    }
+  },
 };
 </script>

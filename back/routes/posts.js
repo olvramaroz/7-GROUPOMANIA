@@ -10,14 +10,12 @@ const multer = require("../middleware/multer-config");
 
 /**** CRUD POSTS ****/
 // create
-router.post("/", checkToken, multer, postsCtrl.createPost); //create
+router.post("/", checkToken, multer, postsCtrl.createPost);
 
 // read
 router.get("/", checkToken, postsCtrl.getAllPosts);
-router.post("/byAuthor", postsCtrl.getPostByAuthor);
 
 // update
-// router.put("/:id", multer, postCtrl.modify);
 router.put("/update/:id", checkToken, multer, postsCtrl.updatePost);
 
 // delete

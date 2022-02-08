@@ -2,7 +2,7 @@
 
   <div class="flex-column">
     <img id="logo" alt="Groupomania logo" src="../assets/logo.png">
-    <!-- <p id="intro">Partagez et restez en contact avec vos collègues.</p> -->
+    <p id="intro">Partagez et restez en contact avec vos collègues.</p>
   </div>
 
   <div class="card block-auto">

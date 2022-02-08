@@ -1,7 +1,7 @@
 <template>
     <!-- Footer -->
     <footer>
-      <div>
+      <div class="p-small p-7">
         © 2022 Copyright – Groupomania - Ony Lalaina Valérie
       </div>
     </footer>
@@ -11,5 +11,6 @@
 <style scoped>
 footer {
     background-color: rgb(255, 215, 215);
+    text-align: center;
 }
 </style>
