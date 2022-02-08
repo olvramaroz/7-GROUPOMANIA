@@ -144,17 +144,17 @@ export default {
       console.log("file", fd.get("file"));
 
       const self = this;
-      axios.post("http://localhost:5000/api/posts", fd, { headers: { Authorization: authHeader() }, })
+      axios.post("http://localhost:7070/api/posts", fd, { headers: { Authorization: authHeader() }, })
       .then(function (res) { console.log(res); self.getPost(); alert("Publication ajoutée !") })
       .catch(function (error) { console.log(error); });
     },
     getPost() {
       const self = this;
-      axios.get("http://localhost:5000/api/posts", { headers: { Authorization: authHeader() },})
+      axios.get("http://localhost:7070/api/posts", { headers: { Authorization: authHeader() },})
       .then((res) => res.json())
       .then((data) => (this.posts = data))
       .catch((error) => { if (error.res && error.res.status === 401) { self.$router.push("/"); } });
-      axios.get("http://localhost:5000/api/comments", { headers: { Authorization: authHeader() }, })
+      axios.get("http://localhost:7070/api/comments", { headers: { Authorization: authHeader() }, })
         .then((res) => (this.comments = res.data))
         .catch((error) => { if (error.res && error.res.status === 401) { self.$router.push("/"); } });
     },
@@ -168,7 +168,7 @@ export default {
     deletePost(postId, authorId) {
       const self = this;
       if (this.userId == authorId) {
-        axios.delete(`http://localhost:5000/api/posts/${postId}`, {
+        axios.delete(`http://localhost:7070/api/posts/${postId}`, {
           headers: { headers: { Authorization: authHeader() } },
           data: { userId: self.userId },
         })
@@ -178,7 +178,7 @@ export default {
     },
     liked() {
       const self = this;
-      axios.post("http://localhost:(5000/api/likes/liked", { userId: this.userId })
+      axios.post("http://localhost:7070/api/likes/liked", { userId: this.userId })
         .then(function (res) {
           const ObjlikedPosts = res.data;
           self.likedPost = [];
@@ -190,7 +190,7 @@ export default {
     },
     like(currentPostId) {
       const self = this;
-      axios.post("http://localhost:5000/api/likes", { userId: this.userId, postId: currentPostId })
+      axios.post("http://localhost:7070/api/likes", { userId: this.userId, postId: currentPostId })
       .then(function (res) { console.log(res); self.liked(); self.getPost(); })
       .catch(function (error) { console.log(error); });
     },
@@ -210,7 +210,7 @@ export default {
     deleteComment(id, authorId, currentPostId) {
       const self = this;
       if (this.userId == authorId) {
-        axios.delete(`http://localhost:5000/api/comments/${id}/${currentPostId}`, { headers: { Authorization: authHeader() }, data: { userId: self.userId } })
+        axios.delete(`http://localhost:7070/api/comments/${id}/${currentPostId}`, { headers: { Authorization: authHeader() }, data: { userId: self.userId } })
         .then((res) => { console.log(res); self.getPost(); })
         .catch((error) => { console.log(error); });
       }
@@ -218,7 +218,7 @@ export default {
     comment(event, id) {
       if (this.newComment) {
         const self = this;
-        axios.post( "http://localhost:5000/api/comments", { comment: this.newComment, authorId: this.userId, postId: id }, { headers: { Authorization: authHeader() } } )
+        axios.post( "http://localhost:7070/api/comments", { comment: this.newComment, authorId: this.userId, postId: id }, { headers: { Authorization: authHeader() } } )
         .then((res) => {
             console.log(res);
             let pathClass, pathInput;
@@ -247,7 +247,7 @@ export default {
     this.token = JSON.parse(localStorage.user).token;
     const self = this;
     axios.post(
-        "http://localhost:5000/api/users",
+        "http://localhost:7070/api/users",
         { userId: self.userId },
         { headers: { Authorization: authHeader() },}
       )

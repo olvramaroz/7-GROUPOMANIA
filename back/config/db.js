@@ -9,6 +9,7 @@ const pool = mysql.createPool({
     connectTimeout: 30000 // 30 seconds
 })
 
+// to check if the connection to the database is established 
 pool.query('SELECT 1 + 1 AS solution', (err, result) => {
     if (err) {
       console.log("connexion à la BDD échouée");

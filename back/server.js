@@ -18,9 +18,10 @@ const normalizePort = (val) => {
   return false;
 };
 
-const port = normalizePort(process.env.PORT || "5000");
+const port = normalizePort(process.env.PORT || "7070");
 app.set("port", port);
 
+// CORS handler 
 const corsOptions = {
   origin: "*"
 };
@@ -57,5 +58,5 @@ server.on("listening", () => {
   console.log("Le port foncionne sur le " + bind);
 });
 
-// écoute sur le port 5000
+// écoute sur le port 7070
 server.listen(port);

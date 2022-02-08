@@ -31,7 +31,6 @@
 <script>
 import axios from "axios";
 
-
 export default {
   name: "signup",
   data() {
@@ -84,7 +83,7 @@ export default {
       );
     },
     signup() {
-    axios.post("http://localhost:5000/api/users/signup", {
+    axios.post("http://localhost:7070/api/users/signup", {
           lastname: this.lastname,
           firstname: this.firstname,
           email: this.email,
@@ -93,7 +92,7 @@ export default {
 
         .then((res) => {
           if(res.status === 201) {
-              this.$router.push("http://localhost:5000/api/users/login")
+              this.$router.push("/api/users/login");
               alert("Votre compte a bien été créé, veuillez vous connecter.")
           }
         })
