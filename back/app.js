@@ -26,7 +26,6 @@ app.use((req, res, next) => {
 // Les routes
 app.use("/api/users", require("./routes/users"));
 app.use("/api/posts", require("./routes/posts"));
-app.use("/api/likes", require("./routes/likes"));
 app.use("/api/comments", require("./routes/comments"));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

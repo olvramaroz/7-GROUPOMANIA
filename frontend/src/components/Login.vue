@@ -46,6 +46,9 @@ export default {
       .then((res) => {
         if(res.status === 200) {
           const user = { token: res.data.token, userId : res.data.userId }
+
+          console.log("JE SUIS USER LOGIN", user);
+
             localStorage.setItem('user', JSON.stringify(user));
             this.$router.push("/api/posts");
             }

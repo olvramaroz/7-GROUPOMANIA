@@ -3,9 +3,12 @@
 </template>
 
 <script>
+// import axios from "axios";
 export default {
-  name: "app"
+  name: "app",
 };
+
+
 </script>
 
 <style>
@@ -125,10 +128,10 @@ a:link {
 /* WELCOME FORM LOGIN */
 #logo {
   margin: auto;
+  height: 5rem;
 }
 #intro {
   text-align: center;
-  font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 .form-row {
@@ -159,6 +162,7 @@ a:link {
   border-radius: 16px;
   padding:32px;
   margin-bottom: 50px;
+  border: 1px solid;
 }
 .card_title {
   text-align:center;

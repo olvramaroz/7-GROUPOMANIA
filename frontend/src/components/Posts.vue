@@ -108,9 +108,6 @@
 <script>
 import axios from "axios";
 import authHeader from "../main";
-// import authHeader from "../services/authHeader";
-// import Header from '@/components/Header.vue';
-// import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'posts',
@@ -122,14 +119,9 @@ export default {
       },
       posts: [],
       users: null,
-      likedPost: [],
       userId: JSON.parse(localStorage.user).userId,
       token: JSON.parse(localStorage.user).token,
     }
-  },
-  components: {
-    // Header,
-    // Footer
   },
   methods: {
     uploadfile(event) {
@@ -144,13 +136,18 @@ export default {
       console.log("file", fd.get("file"));
 
       const self = this;
-      axios.post("http://localhost:7070/api/posts", fd, { headers: { Authorization: authHeader() }, })
+      axios.post("http://localhost:7070/api/posts", fd, { 
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: authHeader(),
+        },
+      })
       .then(function (res) { console.log(res); self.getPost(); alert("Publication ajoutée !") })
       .catch(function (error) { console.log(error); });
     },
     getPost() {
       const self = this;
-      axios.get("http://localhost:7070/api/posts", { headers: { Authorization: authHeader() },})
+      axios.get("http://localhost:7070/api/posts", { headers: { Authorization: authHeader(),}})
       .then((res) => res.json())
       .then((data) => (this.posts = data))
       .catch((error) => { if (error.res && error.res.status === 401) { self.$router.push("/"); } });
@@ -169,30 +166,12 @@ export default {
       const self = this;
       if (this.userId == authorId) {
         axios.delete(`http://localhost:7070/api/posts/${postId}`, {
-          headers: { headers: { Authorization: authHeader() } },
+          headers: { Authorization: authHeader() },
           data: { userId: self.userId },
         })
         .then((res) => { console.log(res); self.getPost(); })
         .catch((error) => { console.log(error); });
       }
-    },
-    liked() {
-      const self = this;
-      axios.post("http://localhost:7070/api/likes/liked", { userId: this.userId })
-        .then(function (res) {
-          const ObjlikedPosts = res.data;
-          self.likedPost = [];
-          for (const ObjlikedPost of ObjlikedPosts) {
-            self.likedPost.push(ObjlikedPost.postId);
-          }
-        })
-        .catch(function (error) { console.log(error); });
-    },
-    like(currentPostId) {
-      const self = this;
-      axios.post("http://localhost:7070/api/likes", { userId: this.userId, postId: currentPostId })
-      .then(function (res) { console.log(res); self.liked(); self.getPost(); })
-      .catch(function (error) { console.log(error); });
     },
     showComment(event) {
       let path;
@@ -218,7 +197,7 @@ export default {
     comment(event, id) {
       if (this.newComment) {
         const self = this;
-        axios.post( "http://localhost:7070/api/comments", { comment: this.newComment, authorId: this.userId, postId: id }, { headers: { Authorization: authHeader() } } )
+        axios.post( "http://localhost:7070/api/comments", { comment: this.newComment, authorId: this.userId, postId: id }, { headers: { Authorization: authHeader() }, })
         .then((res) => {
             console.log(res);
             let pathClass, pathInput;
@@ -247,24 +226,15 @@ export default {
     this.token = JSON.parse(localStorage.user).token;
     const self = this;
     axios.post(
-        "http://localhost:7070/api/users",
+        "http://localhost:7070/api/posts",
         { userId: self.userId },
-        { headers: { Authorization: authHeader() },}
+        { headers: { Authorization: authHeader() }}
       )
-      .then((response) => {
-        self.user = response.data[0];
-      })
-      .catch(function (error) {
-        if (error.response && error.response.status === 400) {
-          self.$router.push("/");
-        }
-      });
+      .then((response) => { self.user = response.data[0]; })
+      .catch(function (error) { if (error.response && error.response.status === 400) { self.$router.push("/"); }});
 
     this.getPost();
-    this.liked();
-    if (!this.userId) {
-      this.$router.push("/");
-    }
-  },
+    if (!this.userId) { this.$router.push("/"); }
+  }
 };
 </script>
