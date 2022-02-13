@@ -1,5 +1,0 @@
-<template>
-  <div>
-    <h1>Update profile here !</h1>
-  </div>
-</template>

@@ -1,0 +1,60 @@
+API BACKEND
+
+- npm init,
+- npm install express, mysql2 sequelize sequelize-cli
+- set config/config.json
+- set migration : npx sequelize-cli model:generate --name Users --attributes {{firstname: datatypes.string}, {firstname:datatypes.string,}}
+    -> set it properly after it's created
+
+    /*
+    This will:
+
+    Create a model file user in models folder;
+    Create a migration file with name like XXXXXXXXXXXXXX-create-user.js in migrations folder.
+
+    Note: Sequelize will only use Model files, it's the table representation.
+    On the other hand, the migration file is a change in that model or more specifically that table,
+    used by CLI. Treat migrations like a commit or a log for some change in database.
+    */
+
+- set donc les fichiers dans models, pour les besoins du projets
+- verif set migrations que ça corresponde bien au models
+- set les "relations" dans models/index
+
+    /*
+    Now to actually create that table in the database 
+    you need to run db:migrate command.
+    */ 
+
+- cmd : npx sequelize-cli db:migrate
+
+    /* IN CASE YOU NEED TO UNDO THE MOST RECENT MIGRATION
+    npx sequelize-cli db:migrate:undo
+
+    /* IN CASE YOU NEED TO UNDO
+    npx sequelize-cli db:migrate:undo:all
+
+    /* IN CASE YOU NEED TO UNDO A SPECIFIC MIGRATION
+    npx sequelize-cli db:migrate:undo:all --to XXXXXXXXXXXXXX-create-posts.js
+
+- set server.js
+- set .env
+- set app 
+    and (npm install cors path helmet)
+    don't put any auth verification or routes at this point
+- set config/db.connexion.js
+
+    TEST SERVEUR & DATABASE : cmd : node server
+
+------------ CONNECTED SERVER & DATABASE - 13/02/2022 18h40 ------------
+
+- set the routes (app.js and /routes) WITHOUT AUTH CONTROLL IN ANY WAY
+
+    POSTMAN THE USERS ROUTES : cmd : node server
+    ------------ STATUS ? - 13/02/2022  ------------
+
+    POSTMAN THE POSTS ROUTES : cmd : node server
+    ------------ STATUS ? - 13/02/2022  ------------
+
+    POSTMAN THE COMMENTS ROUTES : cmd : node server
+    ------------ STATUS ? - 13/02/2022  ------------

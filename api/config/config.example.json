@@ -1,0 +1,26 @@
+// Remplacez xxx par vos propres données
+// et renommez le fichier en 'config.json'
+
+{
+  "development": {
+    "username": "xxx",
+    "password": "xxx",
+    "database": "groupomaniaset",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "xxx",
+    "password": "xxx",
+    "database": "groupomaniaset",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "xxx",
+    "password": "xxx",
+    "database": "groupomaniaprod",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
