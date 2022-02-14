@@ -113,3 +113,5 @@ CLIENT
     ------------ SIGNUP FAIL - 14/02/2022 13h40 ------------
     ERROR : (node:4804) UnhandledPromiseRejectionWarning: Error
     : it says I have no "catch" error handlers, but I do, both in the back and frontend
+
+    

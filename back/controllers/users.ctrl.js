@@ -10,30 +10,26 @@ require('dotenv').config({ path: './.env'})
 
 // signup
 exports.signup = (req, res, next) => {
-    // if (User.length === 0) {
-    //     bcrypt.hash(process.env.ADMIN_PASSWORD, 8)
-    //     .then(hash => {
-    //         const user = new User({
-    //             id: 1,
-    //             firstname: process.env.ADMIN_FIRSTNAME,
-    //             lastname: process.env.ADMIN_LASTNAME,
-    //             email: process.env.ADMIN_EMAIL,
-    //             password: hash,
-    //             userpicture: `${req.protocol}://${req.get("host")}/images/${process.env.ADMIN_USERPICTURE}`,
-    //             isAdmin: true,
-    //             isActive: true
-    //         })
-    //         user.save()
-    //     })
-    // }
-    // TO DO ICI vérifier user
-    console.log(req.body);
+    if (User.length === 0) {
+        bcrypt.hash(process.env.ADMIN_PASSWORD, 8)
+        .then(hash => {
+            const user = new User({
+                id: 1,
+                firstname: process.env.ADMIN_FIRSTNAME,
+                lastname: process.env.ADMIN_LASTNAME,
+                email: process.env.ADMIN_EMAIL,
+                password: hash,
+                userpicture: `${req.protocol}://${req.get("host")}/images/${process.env.ADMIN_USERPICTURE}`,
+                isAdmin: true,
+                isActive: true
+            })
+            user.save()
+        })
+    }
     bcrypt.hash(req.body.password, 8)
-    
     .then(hash => {
-        
         const user = new User({
-            firstname: req.body.firstname,
+            firtsname: req.body.firtsname,
             lastname: req.body.lastname,
             email: req.body.email,
             password: hash,
