@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const path = require('path')
+const path = require('path');
+const auth = require("./middleware/auth");
 const helmet = require('helmet');
 const cors = require('cors');
 require('dotenv').config();
@@ -29,8 +30,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/users", usersRoutes)
-app.use("/api/posts", postsRoutes)
-app.use("/api/comments", commentsRoutes)
+app.use("/api/posts", auth, postsRoutes)
+app.use("/api/comments", auth, commentsRoutes)
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 

@@ -44,17 +44,28 @@ API BACKEND
     don't put any auth verification or routes at this point
 - set config/db.connexion.js
 
-    TEST SERVEUR & DATABASE : cmd : node server
+    TEST SERVEUR : cmd : node server
 
------------- CONNECTED SERVER & DATABASE - 13/02/2022 18h40 ------------
+------------ CONNECTED TO THE SERVER - 13/02/2022 18h40 ------------
 
 - set the routes (app.js and /routes) WITHOUT AUTH CONTROLL IN ANY WAY
+- set the controllers : folders and functions
+    > npm install bcrypt, pour crypter le pwd
+    > npm install multer, pour gérer les uploads
+    > set un user admin, the first signed in if you can
+
+- set auth control
+    > npm install jsonwebtoken
+    > set /middleware et auth.js
+    > place 'auth' module where you need it (mostly put or delete routes)
+
 
     POSTMAN THE USERS ROUTES : cmd : node server
-    ------------ STATUS ? - 13/02/2022  ------------
+    ------------ POSTMAN OK - 14/02/2022 4h30 ------------
 
     POSTMAN THE POSTS ROUTES : cmd : node server
-    ------------ STATUS ? - 13/02/2022  ------------
+    ------------ POSTMAN OK - 14/02/2022 4h30 ------------
 
     POSTMAN THE COMMENTS ROUTES : cmd : node server
-    ------------ STATUS ? - 13/02/2022  ------------
+    ------------ POSTMAN OK - 14/02/2022 4h30 ------------
+
