@@ -69,3 +69,47 @@ API BACKEND
     POSTMAN THE COMMENTS ROUTES : cmd : node server
     ------------ POSTMAN OK - 14/02/2022 4h30 ------------
 
+CLIENT
+- se positionner dans le dossier principal
+- npm install -g @vue/cli
+- vue create client : client is the name of the project
+    > choose manually
+    > pick Vue 2 with : Babel, Router, Vuex, Linter
+    > use history mode  YES
+    > Eslint with error only
+    > store in package.json so you can have an eye on them at one place
+
+- open package.json, see if everything is ok, with the right versions we need
+    > !some versions of those packages might create problems with some Js syntaxes!
+    > "eslint" must be on version 6.x.x for example
+
+- set a default port for the frontend
+    > create a vue.config.js file in the main folder
+    > module.exports = {
+    devServer: {
+      port: 8085
+    }
+  }
+
+- cmd : cd client
+
+- npm install axios - pour communiquer avec le backend
+- npm install sweetalert2 --save - pour gérer les notifications
+    > use sweetalert2 cause it handles promises and external CSS file automatically
+
+- App.vue
+    - <style> remplacer par les tiens
+    - <script> export default le name App c'est tout
+    - <template> supprimer div nav et son contenu puisqu'on met le Header en component
+
+- /Router
+    - start basic routes : signup > login > home
+
+- /Views
+    - ajouter tes contenus signup, login, home (laisser Home par défaut pour tester)
+    - laisser About par défaut comme tel pour l'instant
+
+    TEST : cmd : node server
+    ------------ SIGNUP FAIL - 14/02/2022 13h40 ------------
+    ERROR : (node:4804) UnhandledPromiseRejectionWarning: Error
+    : it says I have no "catch" error handlers, but I do, both in the back and frontend
