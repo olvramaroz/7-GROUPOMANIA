@@ -118,4 +118,7 @@ CLIENT
     donc node était confus.
     firstname était aussi mal écrit en font 14/02/2022 15h00 
 
-- TO DO : Home.vue : createpost, showpost, modify, delete 
+- créer les composants et AB TEST à chaque fois
+    - Header : TEST OK - les links fonctionnent, affichage temporaire ok
+    - Create post
+    - Get posts
