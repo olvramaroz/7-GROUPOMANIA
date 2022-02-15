@@ -114,5 +114,8 @@ CLIENT
     ERROR : (node:4804) UnhandledPromiseRejectionWarning: Error
     : it says I have no "catch" error handlers, but I do, both in the back and frontend
 
-    SOLVED WITH AURELIE : le front renvoyait plusieurs fois la requete d'erreur
+    SOLVED WITH AURELIE GUERRE : le front renvoyait plusieurs fois la requete d'erreur
+    donc node était confus.
     firstname était aussi mal écrit en font 14/02/2022 15h00 
+
+- TO DO : Home.vue : createpost, showpost, modify, delete 
