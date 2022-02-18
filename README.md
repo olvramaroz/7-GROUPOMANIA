@@ -1,16 +1,13 @@
 # Creation of a corporate social network
 
-## Getting started
-
-`git clone git@github.com:olvramaroz/OnyLalainaValerieRamarozatovo_P7_06072021.git`
 
 ### Set the Database
 
 Make sure you have `MySQL` installed globally
 
-Match your own MySQL credentials with the back-groupo/.env file
-Rename it into ".env" instead of ".env.example"
-Do the same thing for the ./config/config.example file.
+Match your own MySQL credentials with the backend/.env.example file
+Rename it ".env" instead of ".env.example"
+Do the same thing for the ./config/config.example.json file.
 
 ```
 cd backend
@@ -37,4 +34,4 @@ npm install
 npm run serve
 ```
 
-The app is reafy to use at the address : http://localhost:8085/
+The app is ready to use at : http://localhost:8085/
