@@ -68,6 +68,9 @@ export default {
         .then(function(response) {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userId", response.data.userId);
+          localStorage.setItem("userName",response.data.userName)
+          localStorage.setItem("avatar",response.data.avatar)
+          localStorage.setItem("role",response.data.role)          
 
           Swal.fire({
             text: "Connexion réussie !",

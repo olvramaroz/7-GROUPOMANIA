@@ -138,8 +138,7 @@
             </div>
           </div>
         </div>
-
-      
+     
       </div>
     </div>
   </div>
@@ -167,6 +166,7 @@ export default {
       userName: "",
       email: "",
       role: "",
+      currentUserId: "",
       createdAt: "",
       messagesCount: "",
       commentsCount: "",
@@ -279,6 +279,8 @@ export default {
     },
   },
   created: function () {
+    this.isAdmin = localStorage.getItem("role")
+    this.currentUserId = localStorage.getItem("userId")
     axios
       .get(
         "http://localhost:3000/api/users/" + localStorage.getItem("userId"),

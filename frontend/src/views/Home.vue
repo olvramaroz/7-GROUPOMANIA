@@ -38,9 +38,13 @@
                                         le {{message.createdAt.slice(0,10).split('-').reverse().join('/') + ' à ' + message.createdAt.slice(11,16)}}
                                     </span>
                                 </div>
-                                <div>
-                                    <a :href="'/message/edit/' + message.id"><img v-if="message.UserId == currentUserId || isAdmin == 'true'" src="/images/edit.png" @click="editPost()" class="delete-icon m-1 p-0" alt="Modifier le message" title="modifier le message"/></a>
-                                    <a :href="'/message/drop/' + message.id"><img v-if="message.UserId == currentUserId || isAdmin == 'true'" src="/images/delete.png" @click="deletePost()" class="delete-icon m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                                <div v-if="isAdmin == 'true'">
+                                    <a :href="'/message/edit/' + message.id"><img src="/images/edit.png" @click="editPost()" class="delete-icon m-1 p-0" alt="Modifier le message" title="modifier le message"/></a>
+                                    <a :href="'/message/drop/' + message.id"><img src="/images/delete.png" @click="deletePost()" class="delete-icon m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                                </div>
+                                <div v-if="(message.UserId == currentUserId) && (isAdmin == 'false')">
+                                    <a :href="'/message/edit/' + message.id"><img src="/images/edit.png" @click="editPost()" class="delete-icon m-1 p-0" alt="Modifier le message" title="modifier le message"/></a>
+                                    <a :href="'/message/drop/' + message.id"><img src="/images/delete.png" @click="deletePost()" class="delete-icon m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
                                 </div>
                             </div>                                                            
                         </div>
@@ -74,13 +78,13 @@ export default {
     },
     data() {
         return {
-            isAdmin: false,
             isActive: true,
             newImage: "",
             currentUserId: "",
             newMessage: "",
             file: null,
             messages: [],
+            isAdmin: false,
         }
     },
     methods: {

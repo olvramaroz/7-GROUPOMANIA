@@ -1,5 +1,6 @@
 # Creation of a corporate social network
 
+You need to have installed Node.js, MySQL, Sequelize-cli in you machine.
 
 ### Set the Database
 
@@ -9,19 +10,20 @@ Match your own MySQL credentials with the backend/.env.example file
 Rename it ".env" instead of ".env.example"
 Do the same thing for the ./config/config.example.json file.
 
+
+### Install the Backend with the db
+
 ```
 cd backend
-```
-
-```
-npx sequelize-cli db:create
-npx sequelize-cli db:migrate
-```
-
-### Install the Backend
-
-```
 npm install
+```
+
+```
+ sequelize db:create
+ sequelize db:migrate
+```
+
+```
 npm start
 ```
 ### Run the Frontend

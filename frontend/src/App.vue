@@ -229,7 +229,21 @@ a:link {
   width: 540px;
   background: #fff;
   border-radius: 16px;
-  margin: 50px 100px;
+  margin-top: 50px;
+}
+
+@media (min-width: 1024px) {
+  .card_post {
+    margin: 50px 100px;
+  }
+}
+.card-comment-active {
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  padding:32px;
+  margin-bottom: 50px;
+  border: 1px solid #FFD7D7;
 }
 .card_comment {
   width: 100%;

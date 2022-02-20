@@ -14,14 +14,18 @@
                                     <span v-if="!message.isActive" class="small text-danger">(supprimé)</span>, 
                                         le {{message.createdAt.slice(0,10).split('-').reverse().join('/') + ' à ' + message.createdAt.slice(11,16)}}
                                     </span>
-                                </div>                                
-                                <div>
-                                    <a :href="'/message/edit/' + message.id"><img v-if="message.UserId == currentUserId || isAdmin == 'true'" src="/images/edit.png" class="delete-icon m-1 p-0" alt="Modifier le message" title="modifier le message"/></a>
-                                    <a :href="'/message/drop/' + message.id"><img v-if="message.UserId == currentUserId || isAdmin == 'true'" src="/images/delete.png" class="delete-icon m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
                                 </div>
-                            </div>
-                              
+                                <div v-if="isAdmin == 'true'">
+                                    <a :href="'/message/edit/' + message.id"><img src="/images/edit.png" @click="editPost()" class="delete-icon m-1 p-0" alt="Modifier le message" title="modifier le message"/></a>
+                                    <a :href="'/message/drop/' + message.id"><img src="/images/delete.png" @click="deletePost()" class="delete-icon m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                                </div>
+                                <div v-if="(message.UserId == currentUserId) && (isAdmin == 'false')">
+                                    <a :href="'/message/edit/' + message.id"><img src="/images/edit.png" @click="editPost()" class="delete-icon m-1 p-0" alt="Modifier le message" title="modifier le message"/></a>
+                                    <a :href="'/message/drop/' + message.id"><img src="/images/delete.png" @click="deletePost()" class="delete-icon m-1 p-0" alt="Supprimer le message" title="Supprimer le message"/></a>
+                                </div>
+                            </div>      
                         </div>
+
                         <div class="card-body text-dark text-left">
                             <p class="small" v-if="message.message !== ''"> {{message.message}} </p>
                             <img class="w-100" :src="message.messageUrl" v-if="message.messageUrl !== ''">
@@ -55,13 +59,16 @@ export default {
         return {
             noUserMessage: false,
             newImage: "",
-            currentUserId: "", 
+            currentUserId: "",
             newMessage: "",
             file: null,
-            userMessages: []
+            userMessages: [],
+            isAdmin: false,
         }
     },
     created: function() {
+        this.isAdmin = localStorage.getItem("role")
+        this.currentUserId = localStorage.getItem("userId")
         if (localStorage.getItem("refresh")===null) {
             localStorage.setItem("refresh", 0)
             location.reload()

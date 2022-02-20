@@ -50,7 +50,6 @@ export default {
           email: this.email,
           password: this.password
         })
-   
         .then(function (response) {
             var statut = response.status;
             if (statut === 201 || statut === 200) {
@@ -65,18 +64,21 @@ export default {
             })
             }
         })
-        .catch(function(error) {
-            var erreur = error.status;
-            if (erreur === 400 || erreur === 401 || erreur === 500) {
-            Swal.fire({
-                text: "Une erreur est survenue",
-                icon: "error",
-                timer: 2000,
-                showConfirmButton: false,
-                timerProgressBar: true,
+        .catch(function (error) {
+                const codeError = error.message.split("code ")[1]
+                let messageError = ""
+                switch (codeError){
+                    case "401": messageError = "Adresse email déjà utilisée !";break
+                }
+                Swal.fire({
+                    title: "Une erreur est survenue",
+                    text: messageError || error.mesage,
+                    icon: "error",
+                    timer: 3500,
+                    showConfirmButton: false,
+                    timerProgressBar: true
+                })
             });
-            } 
-        });
     }
   }
 };

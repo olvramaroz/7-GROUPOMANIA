@@ -2,21 +2,21 @@
     "development": {
       "username": "xxx",
       "password": "xxx",
-      "database": "datagroupo",
+      "database": "groupomaniadev",
       "host": "localhost",
       "dialect": "mysql"
     },
     "test": {
       "username": "xxx",
       "password": "xxx",
-      "database": "datagroupo",
+      "database": "groupomaniadev",
       "host": "localhost",
       "dialect": "mysql"
     },
     "production": {
       "username": "xxx",
       "password": "xxx",
-      "database": "datagroupo",
+      "database": "groupomaniarun",
       "host": "localhost",
       "dialect": "mysql"
     }

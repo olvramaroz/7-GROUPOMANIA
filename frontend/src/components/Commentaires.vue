@@ -1,7 +1,10 @@
 <template>
     <div>
         <Header />
-        <div class="margin-top-10r">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <div class="margin-top-10r">
             <div class="card_comment bg-light my-3">
                 <div class="card-header bg-light d-flex align-items-center justify-content-between m-0 p-1">
                     <div>
@@ -25,8 +28,8 @@
                         </div>
                     </div>
 
-                <div class="col-12 col-md-10 col-lg-8">
-                    <b-button  @click="$bvModal.show('modalAddComment')" href="" data-toggle="modal" data-target="#modalAddComment" class="my-2 btn btn-sm btn-block text-black">Poster un commentaire...</b-button>
+                <div class="col-12">
+                    <b-button  @click="$bvModal.show('modalAddComment')" href="" data-toggle="modal" data-target="#modalAddComment" class="my-2 btn btn-sm btn-block btn-danger">Poster un commentaire...</b-button>
                     <b-modal  hide-footer hide-header class="modal fade" id="modalAddComment" tabindex="-1" aria-labelledby="modalAddComment" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -53,22 +56,31 @@
                     </b-modal>
                 </div>
                 
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div v-for="comment in comments" :key="comment.id" class="card bg-light my-3">
-                        <div class="card-header align-items-center m-0 p-1">
+                <div class="col-12">
+
+                    <div v-for="comment in comments" :key="comment.id" class="card-comment-active my-3">
+                        <div class="card-header m-0 p-1">
                             <div class="d-flex justify-content-between">
-                                <span class="small text-dark m-0 p-1">
+                                <!-- <img :src="comment.avatar" alt="image de profil" class="userpicture_post"/> -->
+                                <span class="p-small text-dark m-0 p-1">
                                     Commentaire de {{comment.User.userName}} 
                                     <span v-if="!comment.User.isActive" class="small text-danger">(supprimé)</span>, 
                                     le {{comment.createdAt.slice(0,10).split('-').reverse().join('/')}}
                                 </span>
                             </div>
-                            <hr class="m-0 p-0 bg-secondary">
-                            <p class="small text-dark m-0 p-1"> {{comment.comment}}</p>
+                            <!-- <hr class="m-0 p-0 bg-secondary"> -->
+                            <p class="text-dark m-0 p-1"> {{comment.comment}}</p>
                         </div>
                     </div>
+
                 </div>
         </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <Footer />
     </div>
 </template>

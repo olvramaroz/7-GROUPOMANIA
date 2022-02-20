@@ -3,7 +3,14 @@
 const { Model } = require("sequelize")
 
 module.exports = (sequelize, DataTypes) => {
-    class User extends Model {}
+    class User extends Model {
+        static associate({ Message }) {
+            this.hasMany(Message, {
+                onDelete: 'cascade',
+                foreignKey: 'UserId',
+            })       
+        }
+    }
     User.init({
         userName: {
             type: DataTypes.STRING,

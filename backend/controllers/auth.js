@@ -59,10 +59,12 @@ exports.login = (req, res, next) => {
             role: user.isAdmin,
             userName: user.userName,
             avatar: user.avatar,
-            token: jwt.sign({ userId: user.id }, process.env.SECRET_KEY, {
-              expiresIn: "24h",
-            }),
-          });
+            token: jwt.sign(
+              { userId: user.id },
+              process.env.SECRET_KEY,
+              { expiresIn: "24h" }
+            )
+          })
         })
         .catch((error) => res.status(501).json({ error }));
     })
