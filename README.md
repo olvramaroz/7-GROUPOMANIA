@@ -1,4 +1,7 @@
-# Creation of a corporate social network
+# Corporate social network
+# Node, Express, Sequelize, JWT
+# Vue, Axios, Bootstrap, Sweetalert
+# Javascript
 
 You need to have installed Node.js, MySQL, Sequelize-cli in you machine.
 
